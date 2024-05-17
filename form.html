@@ -4,62 +4,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <title>Form Example</title>
     <style>
         /* Basic styling */
         body {
             font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
         form {
             max-width: 500px;
-            margin: 0 auto;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
         }
 
         input[type="text"],
         input[type="email"],
-        input[type="tel"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
+        input[type="tel"],
         select {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
 
         input[type="submit"] {
-            padding: 10px 20px;
+            width: 100%;
+            padding: 12px;
             background-color: #007bff;
             color: #fff;
             border: none;
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
         }
 
-        /* Modal styling */
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 0;
+            border-radius: 8px;
+            box-shadow: none;
+            text-align: left;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            visibility: hidden;
+        }
+
         .modal {
             display: none;
-            position: fixed;
+            position: absolute;
             z-index: 1;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
         }
 
         .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
+            background-color: #fff;
             padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 300px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
             text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .close {
@@ -67,13 +106,24 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .close:hover,
         .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+            color: #000;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -82,13 +132,15 @@
 
     <form id="myForm">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" name="name" required placeholder="Name">
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" required>
+        <input type="email" id="email" name="email" required placeholder="Email">
+        <div class="container">
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" name="phone" placeholder="Phone Number: (123) 456-7890" required>
+            <small id="phoneError" class="error"></small>
+        </div>
 
         <label for="gender">Gender:</label>
         <select id="gender" name="gender">
@@ -97,11 +149,17 @@
             <option value="other">Other</option>
         </select>
 
-        <label for="subscribe">Subscribe to newsletter?</label>
-        <input type="radio" id="subscribeYes" name="subscribe" value="yes">
-        <label for="subscribeYes">Yes</label>
-        <input type="radio" id="subscribeNo" name="subscribe" value="no" checked>
-        <label for="subscribeNo">No</label>
+
+
+        <label>Subscribe to newsletter?</label>
+        <div class="radio-group">
+            <input type="radio" id="subscribeYes" name="subscribe" value="yes">
+            <label for="subscribeYes">Yes</label>
+            <input type="radio" id="subscribeNo" name="subscribe" value="no" checked>
+            <label for="subscribeNo">No</label>
+        </div>
+
+
 
         <input type="submit" value="Submit">
     </form>
@@ -115,7 +173,9 @@
     </div>
 
     <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+
+    </script>
     <script src="form.js"></script>
 </body>
 
