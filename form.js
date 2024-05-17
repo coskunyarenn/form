@@ -1,3 +1,5 @@
+// use https://dashboard.emailjs.com/ sign in , get Public_KEY , Service_ID and Template_ID
+
 ;(function () {
   emailjs.init("Public_Key") // Replace with your EmailJS user ID
 })()
